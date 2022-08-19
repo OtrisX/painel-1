@@ -74,23 +74,27 @@ const CategoriasWrapper = styled.div`
 
 function App() {
 
-  const [textData, setTextData] = useState({})
-  const [pdf, setPdf] = useState("")
+  const [data ,setData] = useState({
+    enunciado: "",
+    date: "",
+    resolucao: ""
+  })
 
-  function handleFormChange(event){
-    setTextData({...textData,[event.target.name]:event.target.value})
-    console.log(textData)
+  function handleData(e){
+    const newData = {...data}
+    newData[e.target.name] = e.target.value
+    setData(newData)
   }
 
   function handleCompile(){
-    setPdf("")
-
+    console.log("cu")
   }
+
 
 
   return (
     <Container>
-      <Form >
+      <Form onChange={(e) => handleData(e)}>
         <FormWrapper>
           <ButtonsArea>
             <ButtonBlock>
@@ -103,13 +107,13 @@ function App() {
           </ButtonsArea>
           <TextArea>
             <TextBlock>
-              <TextInput name="enunciado" label="Enunciado" setTextData={setTextData}/>
+              <TextInput name="enunciado" label="Enunciado"/>
             </TextBlock>
             <TextBlock>
-              <TextInput name="alternativas" label="Alternativas" setTextData={setTextData}/>
+              <TextInput name="alternativas" label="Alternativas" />
             </TextBlock>
             <TextBlock>
-              <TextInput name="solucao" label="Solução" setTextData={setTextData}/>
+              <TextInput name="solucao" label="Solução" />
             </TextBlock>
           </TextArea>
         </FormWrapper>
