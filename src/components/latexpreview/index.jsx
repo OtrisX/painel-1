@@ -3,9 +3,9 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 
 
 
-function LatexPreview(props){
+function LatexPreview({ pdfURL }){
     return (
-        <Viewer fileUrl={require("../tempFiles/temp.pdf")} />
+        <embed height="100%" width="100%" src={pdfURL ? `${pdfURL}#zoom=75%` : ""}></embed>
     )
 }       
 

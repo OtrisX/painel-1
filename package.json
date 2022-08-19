@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "base64-stream": "^1.0.0",
     "node-latexmk": "^0.1.5",
     "pdfjs-dist": "^2.14.305",
     "react": "^18.2.0",
@@ -43,6 +44,5 @@
   },
   "browser": {
     "child_process": false
-    
   }
 }

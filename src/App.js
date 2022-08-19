@@ -6,8 +6,6 @@ import LatexPreview from "./components/latexpreview"
 import { useState } from "react"
 import { Worker } from '@react-pdf-viewer/core';
 
-
-
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
@@ -25,7 +23,7 @@ const Form = styled.form`
 `
 
 const FormWrapper = styled.div`
-  width: 90%;
+  width: 50%;
   height: 90%;
 
   display: flex;
@@ -33,17 +31,15 @@ const FormWrapper = styled.div`
 
 const Preview = styled.div`
   height: 100%;
-  width: 30%;
+  width: 60%;
 `
 
 const ButtonsArea = styled.div`
   height: 100%;
-  width: 20%;
 `
 
 const TextArea = styled.div`
   height: 100%;
-  width: 80%;
 
   display: flex;
   flex-direction: column;
@@ -73,12 +69,8 @@ const CategoriasWrapper = styled.div`
 
 
 function App() {
-
-  const [data ,setData] = useState({
-    enunciado: "",
-    date: "",
-    resolucao: ""
-  })
+  const [data, setData] = useState({})
+  const [pdfURL, setpdfURL] = useState("")
 
   function handleData(e){
     const newData = {...data}
@@ -87,10 +79,19 @@ function App() {
   }
 
   function handleCompile(){
-    console.log("cu")
+    console.log(data)
+    fetch("http://localhost:3333/compile", {
+      mode: "cors",
+      headers: {"Content-Type": "application/json"},
+      method: "POST",
+      body: JSON.stringify(data)
+    })
+    .then(response => response.blob())
+    .then(blob => {
+      const url = URL.createObjectURL(blob);
+      setpdfURL(url)
+    })
   }
-
-
 
   return (
     <Container>
@@ -120,7 +121,7 @@ function App() {
       </Form>
       <Preview>
         <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
-          <LatexPreview />
+          <LatexPreview pdfURL={pdfURL}/>
         </Worker>
       </Preview>
     </Container>
