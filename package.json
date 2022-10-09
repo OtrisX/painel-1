@@ -12,9 +12,12 @@
     "pdfjs-dist": "^2.14.305",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-dropdown-tree-select": "^2.7.1",
+    "react-hot-toast": "^2.4.0",
     "react-latex": "^2.0.0",
     "react-pdf": "^5.7.2",
     "react-scripts": "5.0.1",
+    "react-toast-notifications": "^2.5.1",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },
@@ -44,5 +47,8 @@
   },
   "browser": {
     "child_process": false
+  },
+  "devDependencies": {
+    "react-router-dom": "^6.4.2"
   }
 }
